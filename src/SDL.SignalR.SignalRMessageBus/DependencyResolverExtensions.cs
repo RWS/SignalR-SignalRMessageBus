@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Messaging;
 
-namespace SDL.SignalR.SignalRMessageBus
+namespace Sdl.SignalR.SignalRMessageBus
 {
     public static class DependencyResolverExtensions
     {

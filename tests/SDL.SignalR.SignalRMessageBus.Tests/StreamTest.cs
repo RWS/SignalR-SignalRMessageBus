@@ -6,7 +6,7 @@ using FakeItEasy;
 using Microsoft.AspNet.SignalR.Client;
 using System.Threading.Tasks;
 
-namespace SDL.SignalR.SignalRMessageBus.Tests
+namespace Sdl.SignalR.SignalRMessageBus.Tests
 {
     [TestClass]
     public class StreamTest

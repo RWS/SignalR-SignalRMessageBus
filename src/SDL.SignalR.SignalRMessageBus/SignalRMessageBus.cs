@@ -7,10 +7,13 @@ using Microsoft.AspNet.SignalR.Messaging;
 using Microsoft.AspNet.SignalR.Tracing;
 using Microsoft.AspNet.SignalR.Client;
 using System.Net;
-using SDL.SignalR.Backplane.Common;
+using Sdl.SignalR.Backplane.Common;
 
-namespace SDL.SignalR.SignalRMessageBus
+namespace Sdl.SignalR.SignalRMessageBus
 {
+    /// <summary>
+    /// Uses SignalR endpoint to scale-out SignalR applications in web farm.
+    /// </summary>
     public class SignalRMessageBus : ScaleoutMessageBus
     {
         private readonly TraceSource _trace;
@@ -18,6 +21,11 @@ namespace SDL.SignalR.SignalRMessageBus
         private readonly IHubProxy _hubProxy;
         private SignalRStream _stream;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SignalRMessageBus"/> class.
+        /// </summary>
+        /// <param name="resolver">The resolver to use.</param>
+        /// <param name="configuration">The SignalR scale-out configuration options.</param>
         public SignalRMessageBus(IDependencyResolver resolver, SignalRScaleoutConfiguration configuration)
             : base(resolver, configuration)
         {

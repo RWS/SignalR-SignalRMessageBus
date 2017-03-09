@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDL.SignalR.SignalRMessageBus", "src\SDL.SignalR.SignalRMessageBus\SDL.SignalR.SignalRMessageBus.csproj", "{C57C403D-021B-452A-A3D7-06F72D3C1E90}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sdl.SignalR.SignalRMessageBus", "src\Sdl.SignalR.SignalRMessageBus\Sdl.SignalR.SignalRMessageBus.csproj", "{C57C403D-021B-452A-A3D7-06F72D3C1E90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDL.SignalR.Backplane.Hub", "src\SDL.SignalR.Backplane.Hub\SDL.SignalR.Backplane.Hub.csproj", "{4DADE886-3223-471A-A0D5-48D0A78FADEC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sdl.SignalR.Backplane.Hub", "src\Sdl.SignalR.Backplane.Hub\Sdl.SignalR.Backplane.Hub.csproj", "{4DADE886-3223-471A-A0D5-48D0A78FADEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDL.SignalR.Backplane.Common", "src\SDL.SignalR.Backplane.Common\SDL.SignalR.Backplane.Common.csproj", "{E91FCFD0-2A8F-4DCE-934D-AC10499AB654}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sdl.SignalR.Backplane.Common", "src\Sdl.SignalR.Backplane.Common\Sdl.SignalR.Backplane.Common.csproj", "{E91FCFD0-2A8F-4DCE-934D-AC10499AB654}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5AA0A01C-1365-4B6B-843B-CE54C3DF8A36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDL.SignalR.SignalRMessageBus.Tests", "tests\SDL.SignalR.SignalRMessageBus.Tests\SDL.SignalR.SignalRMessageBus.Tests.csproj", "{20536897-DF15-4718-91B5-D2193DCDE0A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sdl.SignalR.SignalRMessageBus.Tests", "tests\Sdl.SignalR.SignalRMessageBus.Tests\Sdl.SignalR.SignalRMessageBus.Tests.csproj", "{20536897-DF15-4718-91B5-D2193DCDE0A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

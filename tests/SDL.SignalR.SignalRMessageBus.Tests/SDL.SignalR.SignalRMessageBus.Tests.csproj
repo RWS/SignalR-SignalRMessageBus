@@ -6,8 +6,8 @@
     <ProjectGuid>{20536897-DF15-4718-91B5-D2193DCDE0A5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SDL.SignalR.SignalRMessageBus.Tests</RootNamespace>
-    <AssemblyName>SDL.SignalR.SignalRMessageBus.Tests</AssemblyName>
+    <RootNamespace>Sdl.SignalR.SignalRMessageBus.Tests</RootNamespace>
+    <AssemblyName>Sdl.SignalR.SignalRMessageBus.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <DelaySign>true</DelaySign>
@@ -49,11 +49,12 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Client, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.SignalR.Client.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -92,13 +93,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\SDL.SignalR.Backplane.Common\SDL.SignalR.Backplane.Common.csproj">
+    <ProjectReference Include="..\..\src\Sdl.SignalR.Backplane.Common\Sdl.SignalR.Backplane.Common.csproj">
       <Project>{E91FCFD0-2A8F-4DCE-934D-AC10499AB654}</Project>
-      <Name>SDL.SignalR.Backplane.Common</Name>
+      <Name>Sdl.SignalR.Backplane.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\SDL.SignalR.SignalRMessageBus\SDL.SignalR.SignalRMessageBus.csproj">
+    <ProjectReference Include="..\..\src\Sdl.SignalR.SignalRMessageBus\Sdl.SignalR.SignalRMessageBus.csproj">
       <Project>{c57c403d-021b-452a-a3d7-06f72d3c1e90}</Project>
-      <Name>SDL.SignalR.SignalRMessageBus</Name>
+      <Name>Sdl.SignalR.SignalRMessageBus</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNet.SignalR.Hubs;
 
-namespace SDL.SignalR.Backplane.Common
+namespace Sdl.SignalR.Backplane.Common
 {
     /// <summary>
     /// Extends hosted hub pipeline to faciliate tracing of errors that occur during message broadcasting.
