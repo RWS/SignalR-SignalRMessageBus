@@ -15,7 +15,7 @@
     <copyright>Copyright 2017</copyright>
     <tags>SDL,SignalR,Backplane,MessageBus</tags>
     <dependencies>
-      <dependency id="SDL.SignalR.Backplane.Common" version="1.0.0-CI00001" />
+      <dependency id="SDL.SignalR.Backplane.Common" version="1.0.15" />
     </dependencies>
   </metadata>
 </package>
