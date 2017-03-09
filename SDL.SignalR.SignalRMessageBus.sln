@@ -1,17 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDL.SignalR.SignalRMessageBus", "src\SDL.SignalR.SignalRMessageBus\SDL.SignalR.SignalRMessageBus.csproj", "{C57C403D-021B-452A-A3D7-06F72D3C1E90}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sdl.SignalR.SignalRMessageBus", "src\Sdl.SignalR.SignalRMessageBus\Sdl.SignalR.SignalRMessageBus.csproj", "{C57C403D-021B-452A-A3D7-06F72D3C1E90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDL.SignalR.Backplane.Hub", "src\SDL.SignalR.Backplane.Hub\SDL.SignalR.Backplane.Hub.csproj", "{4DADE886-3223-471A-A0D5-48D0A78FADEC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sdl.SignalR.Backplane.Hub", "src\Sdl.SignalR.Backplane.Hub\Sdl.SignalR.Backplane.Hub.csproj", "{4DADE886-3223-471A-A0D5-48D0A78FADEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDL.SignalR.Backplane.Common", "src\SDL.SignalR.Backplane.Common\SDL.SignalR.Backplane.Common.csproj", "{E91FCFD0-2A8F-4DCE-934D-AC10499AB654}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sdl.SignalR.Backplane.Common", "src\Sdl.SignalR.Backplane.Common\Sdl.SignalR.Backplane.Common.csproj", "{E91FCFD0-2A8F-4DCE-934D-AC10499AB654}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5AA0A01C-1365-4B6B-843B-CE54C3DF8A36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDL.SignalR.SignalRMessageBus.Tests", "tests\SDL.SignalR.SignalRMessageBus.Tests\SDL.SignalR.SignalRMessageBus.Tests.csproj", "{20536897-DF15-4718-91B5-D2193DCDE0A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sdl.SignalR.SignalRMessageBus.Tests", "tests\Sdl.SignalR.SignalRMessageBus.Tests\Sdl.SignalR.SignalRMessageBus.Tests.csproj", "{20536897-DF15-4718-91B5-D2193DCDE0A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{F15A9BFE-DD02-497C-9B36-959FE9CA9CFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendServer", "samples\BackendServer\BackendServer.csproj", "{23AD7A7B-4E1B-4879-813F-1D8F4D2DF69C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatSample", "samples\ChatSample\ChatSample.csproj", "{135C4F20-0440-4DEC-9F0B-DE0305F5E52C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,11 +41,21 @@ Global
 		{20536897-DF15-4718-91B5-D2193DCDE0A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20536897-DF15-4718-91B5-D2193DCDE0A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20536897-DF15-4718-91B5-D2193DCDE0A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23AD7A7B-4E1B-4879-813F-1D8F4D2DF69C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23AD7A7B-4E1B-4879-813F-1D8F4D2DF69C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23AD7A7B-4E1B-4879-813F-1D8F4D2DF69C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23AD7A7B-4E1B-4879-813F-1D8F4D2DF69C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{135C4F20-0440-4DEC-9F0B-DE0305F5E52C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{135C4F20-0440-4DEC-9F0B-DE0305F5E52C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{135C4F20-0440-4DEC-9F0B-DE0305F5E52C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{135C4F20-0440-4DEC-9F0B-DE0305F5E52C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{20536897-DF15-4718-91B5-D2193DCDE0A5} = {5AA0A01C-1365-4B6B-843B-CE54C3DF8A36}
+		{23AD7A7B-4E1B-4879-813F-1D8F4D2DF69C} = {F15A9BFE-DD02-497C-9B36-959FE9CA9CFB}
+		{135C4F20-0440-4DEC-9F0B-DE0305F5E52C} = {F15A9BFE-DD02-497C-9B36-959FE9CA9CFB}
 	EndGlobalSection
 EndGlobal

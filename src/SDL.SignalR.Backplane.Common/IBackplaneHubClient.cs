@@ -1,4 +1,4 @@
-﻿namespace SDL.SignalR.Backplane.Common
+﻿namespace Sdl.SignalR.Backplane.Common
 {
     /// <summary>
     /// Interface to be implemented by backplane client in order to

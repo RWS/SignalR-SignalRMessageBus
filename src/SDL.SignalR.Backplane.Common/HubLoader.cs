@@ -14,9 +14,8 @@ using Microsoft.AspNet.SignalR.Messaging;
 using Newtonsoft.Json;
 using Owin;
 
-namespace SDL.SignalR.Backplane.Common
+namespace Sdl.SignalR.Backplane.Common
 {
-
     public class HubLoader
     {
         /// <summary>
@@ -27,40 +26,16 @@ namespace SDL.SignalR.Backplane.Common
         /// <param name="scaleoutConfigurationType">Type name of scaleout configuration used to configure message bus. This type must be inherited from <see cref="ScaleoutConfiguration"/></param>
         /// <param name="scaleoutMessageBusType">Type name of a message bus. This type must implement <see cref="IMessageBus"/> interface.</param>
         /// <param name="hubAssemblyName">Full assembly name that contains hub interface.</param>
-        /// <param name="getBackplaneConnectionString">Callback used to retrieve connection string of a backplane provider.</param>
         /// <param name="patchOnReceived">Specify <c>true</c> to include PayloadId of a message inside the message body.</param>
+        /// <param name="backplaneConfigurationParameters">Parameters we need to create a backplane instance (e.g. backplane connectionString)</param>
         public static void Load(IAppBuilder app, string assembly, string scaleoutConfigurationType,
-            string scaleoutMessageBusType, string hubAssemblyName, Func<string> getBackplaneConnectionString, bool patchOnReceived)
+            string scaleoutMessageBusType, string hubAssemblyName, bool patchOnReceived, params object[] backplaneConfigurationParameters)
         {
-            Assembly backplaneAssembly = Assembly.Load(assembly);
-
-            Type messageBusType = backplaneAssembly.GetType(scaleoutMessageBusType);
-
-            if (!typeof(IMessageBus).IsAssignableFrom(messageBusType))
-            {
-                throw new ConfigurationErrorsException(string.Format("Provided ScaleoutMessageBusType '{0}' must implement IMessageBus interface.", scaleoutMessageBusType));
-            }
-            Type backplaneConfigType = backplaneAssembly.GetType(scaleoutConfigurationType);
-            if (!typeof(ScaleoutConfiguration).IsAssignableFrom(backplaneConfigType))
-            {
-                throw new ConfigurationErrorsException(string.Format("Provided config type '{0}' must be inherited from ScaleoutConfiguration type.", scaleoutConfigurationType));
-            }
+            IMessageBus messageBus = CreateMessageBus(assembly, scaleoutConfigurationType, scaleoutMessageBusType, patchOnReceived, backplaneConfigurationParameters);
 
             Trace.WriteLine("Starting hub host.");
 
-            IDependencyResolver resolver = GlobalHost.DependencyResolver;
-            IMessageBus messageBus;
-            if (patchOnReceived)
-            {
-                messageBus = LoadBackplane(messageBusType, backplaneConfigType, getBackplaneConnectionString());
-            }
-            else
-            {
-                object backplaneConfig = Activator.CreateInstance(backplaneConfigType, getBackplaneConnectionString());
-                messageBus = (IMessageBus)Activator.CreateInstance(messageBusType, resolver, backplaneConfig);
-            }
-
-            resolver.Register(typeof(IMessageBus), () => messageBus);
+            GlobalHost.DependencyResolver.Register(typeof(IMessageBus), () => messageBus);
 
             // Add tracing for errors that occur inside hub message handlers
             GlobalHost.HubPipeline.AddModule(new ErrorHandlingPipelineModule());
@@ -72,11 +47,100 @@ namespace SDL.SignalR.Backplane.Common
 
             app.MapSignalR(hubConfiguration);
 
-            Trace.WriteLine(string.Format("Starting hub host '{0}'.", messageBusType.Name));
+            Trace.WriteLine(string.Format("Starting hub host '{0}'.", scaleoutMessageBusType));
         }
 
         /// <summary>
-        /// Dynamically overrides backplane behavior in order to support SDL backplane strategy and
+        /// Instantiates message bus.
+        /// </summary>
+        /// <param name="assembly">Full assembly name that contains message bus and scaleout configuration implementation.</param>
+        /// <param name="scaleoutConfigurationType">Type name of scaleout configuration used to configure message bus. This type must be inherited from <see cref="ScaleoutConfiguration"/></param>
+        /// <param name="scaleoutMessageBusType">Type name of a message bus. This type must implement <see cref="IMessageBus"/> interface.</param>
+        /// <param name="backplaneConfigurationParameters"></param>
+        /// <returns>Message bus <see cref="IMessageBus"/> instanse.</returns>
+        public static IMessageBus CreateMessageBus(string assembly, string scaleoutConfigurationType, string scaleoutMessageBusType,
+            params object[] backplaneConfigurationParameters)
+        {
+            return CreateMessageBus(assembly, scaleoutConfigurationType, scaleoutMessageBusType, true,
+                backplaneConfigurationParameters);
+        }
+
+        private static IMessageBus CreateMessageBus(string assembly, string scaleoutConfigurationType, string scaleoutMessageBusType,
+            bool patchOnReceived, params object[] backplaneConfigurationParameters)
+        {
+            Assembly backplaneAssembly = Assembly.Load(assembly);
+
+            Type messageBusType = backplaneAssembly.GetType(scaleoutMessageBusType);
+
+            if (!typeof(IMessageBus).IsAssignableFrom(messageBusType))
+            {
+                throw new ConfigurationErrorsException(
+                    string.Format("Provided ScaleoutMessageBusType '{0}' must implement IMessageBus interface.",
+                        scaleoutMessageBusType));
+            }
+            Type backplaneConfigType = backplaneAssembly.GetType(scaleoutConfigurationType);
+            if (!typeof(ScaleoutConfiguration).IsAssignableFrom(backplaneConfigType))
+            {
+                throw new ConfigurationErrorsException(
+                    string.Format("Provided config type '{0}' must be inherited from ScaleoutConfiguration type.",
+                        scaleoutConfigurationType));
+            }
+
+            IMessageBus messageBus;
+
+            try
+            {
+                if (patchOnReceived)
+                {
+                    messageBus = LoadBackplane(messageBusType, backplaneConfigType, backplaneConfigurationParameters);
+                }
+                else
+                {
+                    object backplaneConfig = Activator.CreateInstance(backplaneConfigType, backplaneConfigurationParameters);
+                    TryToSetStreamIndex("TopicCount", backplaneConfig, backplaneConfigType);
+
+                    messageBus = (IMessageBus)Activator.CreateInstance(messageBusType, GlobalHost.DependencyResolver, backplaneConfig);
+                }
+            }
+            catch (MissingMethodException e)
+            {
+                throw new Exception("Unable to initialize SignalR Backplane Hub. Please provide correct configuration parameters according to the configured backplane type.", e);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Unable to connect to SignalR Backplane Hub. Please check the configured backplane connection string and its parameters.", e);
+            }
+
+            return messageBus;
+        }
+
+        /// <summary>
+        /// This piece of code we need for loading azure message bus backplane.
+        /// Currently our architecture does not support multiple topics(tables,queues, etc).
+        /// By default there is only one table for Sql & Oracle backplanes, the default
+        /// setting for azure service bus is 5. With this dirty hack we set it to 1. Shame on me.
+        /// 
+        /// There was also an idea to send mappingId & streamIndex with the message and create
+        /// several virtual streams for sdl.signalR backplane, but this streamCount property in CM
+        /// should be syncronized with the streamCount property in CME. And we don't have
+        /// time to do it right now.
+        /// </summary>
+        private static void TryToSetStreamIndex(string propertyName, object configuration, Type configurationType)
+        {
+            try
+            {
+                PropertyInfo property = configurationType.GetProperty(propertyName,
+                    BindingFlags.Public | BindingFlags.Instance);
+                if (property != null)
+                {
+                    property.SetValue(configuration, 1);
+                }
+            }
+            catch { }
+        }
+
+        /// <summary>
+        /// Dynamically overrides backplane behavior in order to support Sdl backplane strategy and
         /// creates configured instance which implements <see cref="IMessageBus"/>.
         /// </summary>
         /// <param name="backplaneType">Backplane type (must inherit <see cref="ScaleoutMessageBus"/>). </param>
@@ -96,6 +160,9 @@ namespace SDL.SignalR.Backplane.Common
                 backplaneType);
 
             object backplaneConfig = (ScaleoutConfiguration)Activator.CreateInstance(configurationType, configurationParams);
+
+            TryToSetStreamIndex("TopicCount", backplaneConfig, configurationType);
+
             IMessageBus messageBus = (IMessageBus)Activator.CreateInstance(patchedType, GlobalHost.DependencyResolver, backplaneConfig);
 
             return messageBus;
@@ -200,7 +267,7 @@ namespace SDL.SignalR.Backplane.Common
 
                 ClientHubInvocation clientHubInvocation = serializer.Parse<ClientHubInvocation>(msgString);
 
-                if (clientHubInvocation.Args != null && clientHubInvocation.Args.Count() == 1)
+                if (clientHubInvocation.Args != null && clientHubInvocation.Args.Length == 1)
                 {
                     byte[] orginalArr = Convert.FromBase64String(clientHubInvocation.Args[0].ToString());
                     var idArr = BitConverter.GetBytes(id);

@@ -1,4 +1,4 @@
-﻿namespace SDL.SignalR.Backplane.Common
+﻿namespace Sdl.SignalR.Backplane.Common
 {
     /// <summary>
     /// Constants for backplane hub.

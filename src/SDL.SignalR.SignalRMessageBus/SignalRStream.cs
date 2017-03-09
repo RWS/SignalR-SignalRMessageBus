@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR.Messaging;
 using Microsoft.AspNet.SignalR.Client;
 using System.Linq;
-using SDL.SignalR.Backplane.Common;
+using Sdl.SignalR.Backplane.Common;
 
-namespace SDL.SignalR.SignalRMessageBus
+namespace Sdl.SignalR.SignalRMessageBus
 {
     internal class SignalRStream
     {
