@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SDL.SignalR.SignalRMessageBus")]
+[assembly: AssemblyTitle("Sdl.SignalR.SignalRMessageBus")]
 [assembly: AssemblyDescription("A messaging backplane based on SignalR for scaling out of ASP.NET SignalR applications in a web-farm where the persistant storage will be handled by another backplane.")]
 [assembly: AssemblyCompany("SDL Group")]
-[assembly: AssemblyProduct("SDL.SignalR.SignalRMessageBus")]
+[assembly: AssemblyProduct("Sdl.SignalR.SignalRMessageBus")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
