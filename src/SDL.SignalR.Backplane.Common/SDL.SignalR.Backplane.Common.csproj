@@ -80,7 +80,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Sdl.SignalR.Backplane.Common.nuspec" />
-    <None Include="Sdl.SignalR.Backplane.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
