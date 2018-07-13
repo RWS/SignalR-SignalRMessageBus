@@ -12,9 +12,6 @@
     <Product>Sdl.SignalR.Backplane.Hub</Product>
     <Description>The server side Hub for backplane messaging based on SignalR.</Description>
     <Copyright>Copyright 2017</Copyright>
-    <Version>1.0.41.0</Version>
-    <AssemblyVersion>1.0.41.0</AssemblyVersion>
-    <FileVersion>1.0.41.0</FileVersion>
     <Authors>SDL Group</Authors>
     <PackageIconUrl>http://dr0muzwhcp26z.cloudfront.net/static/corporate/SDL-logo-2014.png</PackageIconUrl>
     <PackageLicenseUrl>https://community.sdl.com/developers/tridion_developer/w/wiki/864.sdl-web-developer-software-and-distribution-agreement</PackageLicenseUrl>
