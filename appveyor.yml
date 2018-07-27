@@ -3,7 +3,7 @@ image: Visual Studio 2017
 before_build:
   - nuget restore
 artifacts: 
-- path: 'bin\$(configuration)\*.nupkg'
+- path: 'src\**\$(configuration)\*.nupkg'
   name: NuGet
 deploy:
     provider: NuGet
