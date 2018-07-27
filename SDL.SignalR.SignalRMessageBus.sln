@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26228.4
-MinimumVisualStudioVersion = 10.0.40219.1
+MinimumVisualStudioVersion = 15.0.26228.4
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sdl.SignalR.SignalRMessageBus", "src\Sdl.SignalR.SignalRMessageBus\Sdl.SignalR.SignalRMessageBus.csproj", "{C57C403D-021B-452A-A3D7-06F72D3C1E90}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sdl.SignalR.Backplane.Hub", "src\Sdl.SignalR.Backplane.Hub\Sdl.SignalR.Backplane.Hub.csproj", "{4DADE886-3223-471A-A0D5-48D0A78FADEC}"
