@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net452</TargetFramework>
+    <TargetFramework>net462</TargetFramework>
     <Configurations>Debug;Release</Configurations>
     <RootNamespace>Sdl.SignalR.Backplane.Common</RootNamespace>
     <AssemblyName>Sdl.SignalR.Backplane.Common</AssemblyName>
