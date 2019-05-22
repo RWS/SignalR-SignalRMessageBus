@@ -65,7 +65,7 @@ namespace Sdl.SignalR.Backplane.Common
                 backplaneConfigurationParameters);
         }
 
-        private static IMessageBus CreateMessageBus(string assembly, string scaleoutConfigurationType, string scaleoutMessageBusType,
+        public static IMessageBus CreateMessageBus(string assembly, string scaleoutConfigurationType, string scaleoutMessageBusType,
             bool patchOnReceived, params object[] backplaneConfigurationParameters)
         {
             Assembly backplaneAssembly = Assembly.Load(assembly);
