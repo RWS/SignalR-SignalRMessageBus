@@ -1,3 +1,6 @@
+
+![Build Badge](https://ci.appveyor.com/api/projects/status/github/sdl/SignalR-SignalRMessageBus?svg=true)
+
 SignalR based backplane provider
 =====================
 
