@@ -1,10 +1,10 @@
 <Project>
   <PropertyGroup>
-    <Version>2.0.2.0</Version>
-    <AssemblyVersion>2.0.2.0</AssemblyVersion>
-    <FileVersion>2.0.2.0</FileVersion>
+    <Version>2.0.3.0</Version>
+    <AssemblyVersion>2.0.3.0</AssemblyVersion>
+    <FileVersion>2.0.3.0</FileVersion>
     <Authors>RWS Group for and on behalf of its affiliates and subsidiaries</Authors>
     <Company>RWS Group for and on behalf of its affiliates and subsidiaries</Company>
-    <Copyright>Copyright © 2015-2021 All Rights Reserved by the RWS Group for and on behalf of its affiliates and subsidiaries.</Copyright>
+    <Copyright>Copyright © 2015-2022 All Rights Reserved by the RWS Group for and on behalf of its affiliates and subsidiaries.</Copyright>
   </PropertyGroup>
 </Project>
